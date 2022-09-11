@@ -42,14 +42,22 @@
     },
   };
 
+  let init = () => {
+    let data = localStorage.getItem('credentials')
+    if (data) {
+      let credentials = JSON.parse(data);
+      // f7.store.dispatch('login', credentials);
+    }
+  }
+
   onMounted(() => {
     f7ready(() => {
-
       // Init capacitor APIs (see capacitor-app.js)
       if (device.capacitor) {
         capacitorApp.init(f7);
       }
       // Call F7 APIs here
+      init()
     });
   });
 
