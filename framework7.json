@@ -1,0 +1,25 @@
+{
+  "cwd": "/home/user/Documents/museum-f7-app",
+  "type": [
+    "capacitor"
+  ],
+  "name": "Museum App",
+  "framework": "vue",
+  "template": "single-view",
+  "bundler": "vite",
+  "cssPreProcessor": "scss",
+  "theming": {
+    "customColor": true,
+    "color": "#ef223c",
+    "darkTheme": true,
+    "iconFonts": true,
+    "fillBars": true
+  },
+  "customBuild": false,
+  "pkg": "io.framework7.myapp",
+  "capacitor": {
+    "platforms": [
+      "android"
+    ]
+  }
+}
