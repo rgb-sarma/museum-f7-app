@@ -13,8 +13,25 @@
       <f7-list-input label="Password" type="password" placeholder="hll" :disabled="!isEditing" v-model:value="niggas" />
       <f7-list-input v-if="isEditing" label="Re-enter Password" type="password" placeholder="hll" :disabled="!isEditing" v-model:value="niggas" />
       <f7-list-input v-if="isEditing" label="Favourite Exibit Types" type="text" placeholder="Add Type of Exibit"></f7-list-input>
+      <f7-list-item>
+        <f7-block class="reduced-m">
+          <f7-chip class="mr-10" text="Slike" :deleteable="isEditing" outline color="blue" ></f7-chip>
+          <f7-chip class="mr-10" text="Muzika" :deleteable="isEditing" outline color="red" ></f7-chip>
+          <f7-chip class="mr-10" text="3D" :deleteable="isEditing" outline color="green" ></f7-chip>
+          <f7-chip class="mr-10" text="2D" :deleteable="isEditing" outline color="blue" ></f7-chip>
+          <f7-chip class="mr-10" text="VR" :deleteable="isEditing" outline color="red" ></f7-chip>
+          <f7-chip class="mr-10" text="Slike" :deleteable="isEditing" outline color="blue" ></f7-chip>
+          <f7-chip class="mr-10" text="VR" :deleteable="isEditing" outline color="red" ></f7-chip>
+          <f7-chip class="mr-10" text="Muzika" :deleteable="isEditing" outline color="red" ></f7-chip>
+          <f7-chip class="mr-10" text="3D" :deleteable="isEditing" outline color="green" ></f7-chip>
+          <f7-chip class="mr-10" text="3D" :deleteable="isEditing" outline color="green" ></f7-chip>
+          <f7-chip class="mr-10" text="3D" :deleteable="isEditing" outline color="green" ></f7-chip>
+          <f7-chip class="mr-10" text="3D" :deleteable="isEditing" outline color="green" ></f7-chip>
+          <f7-chip class="mr-10" text="2D" :deleteable="isEditing" outline color="blue" ></f7-chip>
+        </f7-block>
+      </f7-list-item>
     </f7-list>
-    <f7-block-title>
+    <!-- <f7-block-title>
       Favourite Types
     </f7-block-title>
     <f7-block inset strong>
@@ -23,7 +40,7 @@
       <f7-chip class="mr-10" text="3D" :deleteable="isEditing" outline color="green" ></f7-chip>
       <f7-chip class="mr-10" text="2D" :deleteable="isEditing" outline color="blue" ></f7-chip>
       <f7-chip class="mr-10" text="VR" :deleteable="isEditing" outline color="red" ></f7-chip>
-    </f7-block>
+    </f7-block> -->
     <f7-block v-if="isEditing">
       <f7-row>
         <f7-col>
@@ -64,6 +81,10 @@ const enableEdit = () => {
 
   .h-40 {
     height: 40px;
+  }
+
+  .reduced-m {
+    margin: 0;
   }
 
 </style>

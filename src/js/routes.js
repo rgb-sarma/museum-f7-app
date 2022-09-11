@@ -3,6 +3,7 @@ import HomePage from '@/pages/home.vue';
 import Login from '@/pages/login.vue';
 import Register from '@/pages/register.vue';
 import ProfilePage from '../pages/profile.vue';
+import ExibitionPage from '../pages/exibition.vue';
 import SingleExibit from '@/pages/exibit.vue';
 
 
@@ -24,6 +25,10 @@ var routes = [
   {
     path: '/profile/',
     component: ProfilePage,
+  },
+  {
+    path: '/exibition/',
+    component: ExibitionPage,
   },
   {
     path: '/exibit/:id',
