@@ -1,13 +1,6 @@
 <template>
   <f7-page name="home">
-    <!-- Top Navbar -->
-    <f7-navbar>
-      <f7-nav-right>
-        <f7-link icon-ios="f7:menu" icon-aurora="f7:menu" icon-md="material:menu" panel-open="right"></f7-link>
-      </f7-nav-right>
-      <f7-nav-title sliding>Museum App</f7-nav-title>
-      <!-- <f7-nav-title-large>Museum App</f7-nav-title-large> -->
-    </f7-navbar>
+    <navbar />
 
 
 
@@ -15,22 +8,16 @@
   </f7-page>
 </template>
 
-<script>
-  import {  } from 'vue'
-  export default {
-    props: {
-      f7route: Object,
-      f7router: Object,
-    },
-    setup(p) {
+<script setup>
+  import navbar from '@/components/navbar.vue';
+    // props: {
+    //   f7route: Object,
+    //   f7router: Object,
+    // },
       // console.log(p.f7route);
       // console.log(p.f7router);
 
       
-      return {
-      }
-    }
-  }
 </script>
 
 <style scoped lang="scss">

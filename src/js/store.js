@@ -1,9 +1,10 @@
 import { createStore } from 'framework7/lite';
 import api from '@/api'
+import _ from '@/js/utils.js'
 
 const store = createStore({
   state: {
-    loggedIn: false,
+    loggedIn: null,
     user: {xd: 1},
   },
   getters: {
@@ -15,21 +16,19 @@ const store = createStore({
     }
   },
   actions: {
-    async login ({ state }, user) {
-      try {
-        let data = await api.login(user)
-        console.log(data);
-      } catch (error) {
-        
-      }
+    async register (store, payload) {
+      return await _.callApi(api.register, payload);
     },
-    addUser({ state }, user) {
-      state.user = user;
-      state.loggedIn = true;
+    async login (store, payload) {
+      return await _.callApi(api.login, payload);
+    },
+    addUser({ state }, data) {
+      state.user = data.user;
+      state.loggedIn = data.sid;
     },
     logout({ state }) {
       state.user = null;
-      state.loggedIn = false;
+      state.loggedIn = null;
     },
   },
 })
