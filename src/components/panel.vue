@@ -5,6 +5,7 @@
         <!-- <f7-list-item title="back" link back panel-close/> -->
         <f7-list-item title="Login" link='/login' panel-close/>
         <f7-list-item title="Register" link='/register' panel-close/>
+        <f7-list-item title="Profile" link='/profile/'/>
       </f7-list>
     </f7-page>
   </f7-panel>
