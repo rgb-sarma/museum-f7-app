@@ -1,14 +1,6 @@
 <template>
   <f7-page name="profile" >
-    <f7-navbar>
-      <f7-nav-left>
-        <f7-link icon-ios="f7:person_crop_circle" icon-aurora="f7:person_crop_circle" icon-md="material:person_crop_circle" back></f7-link>
-      </f7-nav-left>
-      <f7-nav-title sliding>Museum App</f7-nav-title>
-      <f7-nav-right>
-        <f7-link icon-ios="f7:menu" icon-aurora="f7:menu" icon-md="material:menu" panel-open="right"></f7-link>
-      </f7-nav-right>
-    </f7-navbar>
+    <navbar />
     <!-- <f7-block-title>
       Profile Information
     </f7-block-title> -->
@@ -51,6 +43,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import navbar from '@/components/navbar.vue';
 
 const niggas = "Racist Kassadin"
 const isEditing = ref(true)
