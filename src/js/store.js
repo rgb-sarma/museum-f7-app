@@ -1,11 +1,11 @@
 import { createStore } from 'framework7/lite';
 import api from '@/api'
 import _ from '@/js/utils.js'
-
+import {ref} from 'vue'
 const store = createStore({
   state: {
-    loggedIn: null,
-    user: {xd: 1},
+    loggedIn: ref(null),
+    user: ref(null),
   },
   getters: {
     loggedIn(state) {
@@ -23,12 +23,12 @@ const store = createStore({
       return await _.callApi(api.login, payload);
     },
     addUser({ state }, data) {
-      state.user = data.user;
-      state.loggedIn = data.sid;
+      state.user.value = data.user;
+      state.loggedIn.value = data.sid;
     },
     logout({ state }) {
-      state.user = null;
-      state.loggedIn = null;
+      state.user.value = null;
+      state.loggedIn.value = null;
     },
   },
 })
