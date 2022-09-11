@@ -1,6 +1,6 @@
 <template>
   <f7-page name="home">
-    <navbar />
+    <navbar disableBack/>
 
 
 

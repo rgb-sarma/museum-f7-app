@@ -1,6 +1,6 @@
 <template>
   <!-- Top Navbar -->
-  <f7-navbar back-link>
+  <f7-navbar :back-link="hasBack">
 
     <f7-nav-title sliding>Museum App</f7-nav-title>
 
@@ -12,6 +12,17 @@
 </template>
 
 <script setup>
+  import { ref, defineProps } from 'vue';
+
+  const props = defineProps({
+    disableBack: {
+      type: Boolean,
+      default: false
+    }
+  });
+  
+  let hasBack = ref(!props.disableBack)
+
 </script>
 
 <style>

@@ -11,12 +11,7 @@
 </template>
 
 <script setup>
-  import api from '@/api';
-  import {f7} from 'framework7-vue';
 
-
-  let user = f7.store.getters.user;
-  console.log(user.value);
 </script>
 
 <style>
