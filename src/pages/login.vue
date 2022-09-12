@@ -16,7 +16,10 @@
           v-model:value="password"
         />
       </f7-list>
-      <f7-button @click="submit">Login</f7-button>
+      <f7-block-footer>
+        Don't have an account? <a href="/register">Register</a>
+      </f7-block-footer>
+      <f7-button @click="submit" disabled>Login</f7-button>
     </f7-block>
 
   </f7-page>

@@ -46,6 +46,9 @@
         v-model:value="address"
       />
     </f7-list>
+    <f7-block-footer class="center-footer">
+        Already have an account? <a href="/login">Log In</a>
+      </f7-block-footer>
     <f7-button @click="submit">Register</f7-button>
   </f7-page>
 </template>
@@ -88,6 +91,9 @@
   }
 </script>
 
-<style>
+<style scoped lang="scss">
+.center-footer {
+  text-align: center;
+}
 
 </style>
