@@ -3,8 +3,7 @@
     <Navbar />
 
     <f7-list>
-      <f7-list-item v-for="n in 5" link="/exibit/1">
-        Hallo
+      <f7-list-item v-for="n in 5" link="/exibit/1" title="Hello" subtitle="No">
       </f7-list-item>
     </f7-list>
   </f7-page>

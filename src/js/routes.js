@@ -27,7 +27,7 @@ var routes = [
     component: ProfilePage,
   },
   {
-    path: '/exibition/',
+    path: '/exibition/:id',
     component: ExibitionPage,
   },
   {

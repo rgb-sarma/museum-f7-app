@@ -2,14 +2,24 @@
   <f7-page name="home">
     <navbar disableBack/>
 
-    <f7-button fill @click="debug">Hello </f7-button>
+    <!-- <f7-button fill @click="debug">Hello </f7-button> -->
 
-    <f7-list class="test">
-      <f7-list-item v-for="n in 5" class="center-el" no-chevron link="/exibition/">
-        <ExibitionCard />
-      </f7-list-item>
-      
-    </f7-list>
+    <f7-block class="another-test">
+      <f7-searchbar no-shadow search-container=".search-list" search-in=".item-footer"></f7-searchbar>
+    </f7-block>
+    <f7-block>
+      <f7-list class="searchbar-not-found">
+        <f7-list-item title="Nothing Found"></f7-list-item>
+      </f7-list>
+      <f7-list media-list class="search-list searchbar-found">
+        <f7-list-item v-for="n in 5" :title="`Title ${n}`" header="" :subtitle="`Mama Mia its No. ${n}`" after="154$" text="NIGGA" :footer="`${n}D VR ART`" no-chevron :link="`/exibition/${n}`">
+          <!-- <ExibitionCard /> -->
+          <!-- <template #media>
+            <img src="https://picsum.photos/id/23/60/60" width="60">
+          </template> -->
+        </f7-list-item>
+      </f7-list>
+    </f7-block>
 
 
   </f7-page>
@@ -18,7 +28,7 @@
 <script setup>
   import navbar from '@/components/navbar.vue';
   import { f7 } from 'framework7-vue';
-  import ExibitionCard from '../components/exibitionCard.vue';
+  // import ExibitionCard from '../components/exibitionCard.vue';
 
   const debug = () => {
     console.log("debug");
@@ -67,39 +77,30 @@
 
 <style scoped lang="scss">
 
-.test {
+// .test {
 
-  ::after, ::before {
-    border: none;
-    background-color: transparent;
+//   ::after, ::before {
+//     border: none;
+//     background-color: transparent;
+//   }
+// }
+
+.another-test {
+  :first-child {
+    background: none;
   }
 }
 
-
-.center-el {
-  display: flex;
-  justify-content: center;
-  background-color: transparent;
-}
-// .custom-test {
-//   display: flex;
-//   justify-content: center;
-//   background-color: transparent;
-//   border: none;
-//   outline: none;
-
-//   &:after {
-//     background-color: transparent;
-//     border: none;
-//     height: 0px;
-//   }
-// }
 </style>
 
-<style>
+<style lang="scss">
+// .item-title {
+//   display: none;
+// }
 
-.center {
-  width: 100%;
-  text-align: center;
-}
+// .center {
+//   width: 100%;
+//   text-align: center;
+
+// }
 </style>
