@@ -6,6 +6,9 @@ const store = createStore({
   state: {
     loggedIn: ref(null),
     user: ref(null),
+    allExibitions: ref(null),
+    exibitTypes: ref([]),
+    exibitionTypes: ref([]),
   },
   getters: {
     loggedIn(state) {
@@ -13,6 +16,12 @@ const store = createStore({
     },
     user(state) {
       return state.user;
+    },
+    getExibitTypes(state) {
+      return state.exibitTypes;
+    },
+    getExibitionTypes(state) {
+      return state.exibitionTypes;
     }
   },
   actions: {
@@ -22,6 +31,9 @@ const store = createStore({
     async login (store, payload) {
       return await _.callApi(api.login, payload);
     },
+    async fetchTypes (store) {
+      return await _.callApi(api.fetchTypes);
+    },
     addUser({ state }, data) {
       state.user.value = data.user;
       state.loggedIn.value = data.sid;
@@ -29,6 +41,10 @@ const store = createStore({
     logout({ state }) {
       state.user.value = null;
       state.loggedIn.value = null;
+    },
+    addTypes({ state }, data) {
+      state.exibitTypes.value = data.exibit_types;
+      state.exibitionTypes.value = data.exibition_types;
     },
   },
 })

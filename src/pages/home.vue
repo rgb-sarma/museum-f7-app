@@ -1,11 +1,11 @@
 <template>
-  <f7-page name="home">
+  <f7-page name="home" @page:afterin="init">
     <navbar disableBack/>
 
     <!-- <f7-button fill @click="debug">Hello </f7-button> -->
 
     <f7-block class="another-test">
-      <f7-searchbar no-shadow search-container=".search-list" search-in=".item-footer"></f7-searchbar>
+      <f7-searchbar no-shadow search-container=".search-list" search-in=".item-title"></f7-searchbar>
     </f7-block>
     <f7-block inset>
       <f7-button panel-open="left" raised round>Filter</f7-button>
@@ -15,7 +15,7 @@
         <f7-list-item title="Nothing Found"></f7-list-item>
       </f7-list>
       <f7-list media-list class="search-list searchbar-found">
-        <f7-list-item v-for="n in 5" :title="`Title ${n}`" header="" :subtitle="`Mama Mia its No. ${n}`" after="154$" text="NIGGA" :footer="`${n}D VR ART`" no-chevron :link="`/exibition/${n}`">
+        <f7-list-item v-for="n in 5" :title="`Title ${n}`" header="" :subtitle="`Mama Mia its No. ${n}`" after="154$" text="NIGGA" :footer="`${-n}D VR ART`" no-chevron :link="`/exibition/${n}`">
           <!-- <ExibitionCard /> -->
           <!-- <template #media>
             <img src="https://picsum.photos/id/23/60/60" width="60">
@@ -23,15 +23,20 @@
         </f7-list-item>
       </f7-list>
     </f7-block>
-
-
   </f7-page>
 </template>
 
 <script setup>
   import navbar from '@/components/navbar.vue';
-  import { f7 } from 'framework7-vue';
+  import { f7, f7ready } from 'framework7-vue';
+  import { onMounted } from 'vue';
   // import ExibitionCard from '../components/exibitionCard.vue';
+
+  const init = async () => {
+    let [res, err] = await f7.store.dispatch('fetchTypes')
+    if (err) f7.dialog.alert(err)
+    await f7.store.dispatch('addTypes', res.data)
+  }
 
   const debug = () => {
     console.log("debug");

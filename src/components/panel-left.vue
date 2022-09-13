@@ -2,12 +2,19 @@
   <f7-panel left push>
     <f7-page>
       <f7-block>
-        <f7-block-title>Type of exibition</f7-block-title>
+        <f7-block-title>What do you want to search for?</f7-block-title>
         <f7-list>
-          <f7-list-item v-for="n in 5" checkbox no-chevron :title="`Vrsta ${n}`"></f7-list-item>
+          <f7-list-item radio title="Tours" name="filter" @change="toursActive" :checked="isTour"></f7-list-item>
+          <f7-list-item radio title="Exibitions" name="filter" @change="exibitionsActive" :checked="isExibition"></f7-list-item>
         </f7-list>
       </f7-block>
-      <f7-block>
+      <f7-block v-if="!isTour">
+        <f7-block-title>Type of exibition</f7-block-title>
+        <f7-list>
+          <f7-list-item v-for="(exibition, index) in exibitionTypes" :key="index" checkbox no-chevron :title="`${exibition}`"></f7-list-item>
+        </f7-list>
+      </f7-block>
+      <f7-block v-if="!isTour">
         <f7-block-title>Type of exibits</f7-block-title>
         <f7-list>
           <f7-list-item v-for="n in 5" checkbox no-chevron :title="`Vrsta exibita ${n}`"></f7-list-item>
@@ -53,15 +60,33 @@
           </f7-list-item>
         </f7-list>
       </f7-block>
+      <f7-block>
+        <f7-row>
+          <f7-col>
+            <f7-button fill round>Apply</f7-button>
+          </f7-col>
+          <f7-col>
+            <f7-button @click="reset" outline round>Reset</f7-button>
+          </f7-col>
+        </f7-row>
+      </f7-block>
     </f7-page>
   </f7-panel>
 </template>
 
 <script setup>
-import { theme } from "framework7-vue";
+import { f7, theme } from "framework7-vue";
 import { ref } from "vue";
 
 theme
+
+let exibitTypes = f7.store.getters.exibitTypes;
+let exibitionTypes = f7.store.getters.exibitionTypes;
+console.log(exibitTypes, exibitionTypes);
+
+
+let isTour = ref(false);
+let isExibition = ref(true);
 
 let priceMin = ref(0);
 let priceMax = ref(500);
@@ -94,6 +119,39 @@ const onReviewChange = (e) => {
   reviewMin.value = e[0];
   reviewMax.value = e[1];
   // console.log(e);
+};
+
+const reset = () => {
+  priceMin.value = 0;
+  priceMax.value = 500;
+  numMin.value = 0;
+  numMax.value = 500;
+  timeMin.value = 10;
+  timeMax.value = 500;
+  reviewMin.value = 0;
+  reviewMax.value = 5;
+  isTour.value = false;
+  isExibition.value = true;
+};
+
+const toursActive = () => {
+  if(isTour.value) {
+    isTour.value = false;
+    isExibition.value = true;
+  } else {
+    isTour.value = true;
+    isExibition.value = false;
+  }
+};
+
+const exibitionsActive = () => {
+  if(isExibition.value) {
+    isExibition.value = false;
+    isTour.value = true;
+  } else {
+    isExibition.value = true;
+    isTour.value = false;
+  }
 };
 
 </script>

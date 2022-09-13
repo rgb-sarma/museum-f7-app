@@ -11,7 +11,14 @@ let api = {
   },
   login: (user) => {
     return axiosInstance.post('/login', user)
-  }
+  },
+  fetchTypes: () => {
+    return axiosInstance.get('/get_types')
+  },
+  fetchExhibitions: () => {
+    return axiosInstance.get('/all_exhibitions')
+  },
+  
   
 }
 
