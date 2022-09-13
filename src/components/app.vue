@@ -3,13 +3,15 @@
     <!-- Your main view, should have "view-main" class -->
     <f7-view main class="safe-areas" url="/"></f7-view>
 
-    <panelComponent />
+    <panelRightComponent />
+    <panelLeftComponent />
 
   </f7-app>
 </template>
 
 <script setup>
-  import panelComponent from './panel.vue';
+  import panelRightComponent from './panel-right.vue';
+  import panelLeftComponent from './panel-left.vue';
   
   import { onMounted,  } from 'vue';
   import { f7, f7ready } from 'framework7-vue';

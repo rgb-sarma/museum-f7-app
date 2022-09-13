@@ -44,10 +44,10 @@
     <f7-block v-if="isEditing">
       <f7-row>
         <f7-col>
-          <f7-button class="h-40" outline @click="cancel">Cancel</f7-button>
+          <f7-button class="h-40" fill round>Save</f7-button>
         </f7-col>
         <f7-col>
-          <f7-button class="h-40" fill>Save</f7-button>
+          <f7-button class="h-40" @click="cancel" outline round>Cancel</f7-button>
         </f7-col>
       </f7-row>
     </f7-block>
@@ -63,7 +63,7 @@ import { ref } from 'vue';
 import navbar from '@/components/navbar.vue';
 
 const niggas = "Racist Kassadin"
-const isEditing = ref(true)
+const isEditing = ref(false)
 
 const cancel = () => {
   isEditing.value = false

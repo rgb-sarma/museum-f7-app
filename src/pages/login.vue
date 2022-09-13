@@ -6,12 +6,16 @@
         <f7-list-input
           label="email"
           type="text"
+          floating-label
+          outline
           placeholder="example@service.com"
           v-model:value="email"
         />
         <f7-list-input
           label="Password"
           type="password"
+          floating-label
+          outline
           placeholder="********"
           v-model:value="password"
         />
@@ -19,7 +23,9 @@
       <f7-block-footer>
         Don't have an account? <a href="/register">Register</a>
       </f7-block-footer>
-      <f7-button @click="submit" disabled>Login</f7-button>
+      <f7-block style="width: 100%;">
+        <f7-button @click="submit" raised round fill>Log In</f7-button>
+      </f7-block>
     </f7-block>
 
   </f7-page>

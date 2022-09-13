@@ -7,6 +7,9 @@
     <f7-block class="another-test">
       <f7-searchbar no-shadow search-container=".search-list" search-in=".item-footer"></f7-searchbar>
     </f7-block>
+    <f7-block inset>
+      <f7-button panel-open="left" raised round>Filter</f7-button>
+    </f7-block>
     <f7-block>
       <f7-list class="searchbar-not-found">
         <f7-list-item title="Nothing Found"></f7-list-item>
@@ -66,11 +69,14 @@
           }
         },
       ],
-      content: '<input type="text" name="name" placeholder="Your name">',
     });
 
     nigga.open();
   } 
+
+  const xd = () => {
+    console.log('chje');
+  }
 
       
 </script>
@@ -85,6 +91,10 @@
 //   }
 // }
 
+.centered {
+  text-align: center;
+}
+
 .another-test {
   :first-child {
     background: none;
@@ -98,9 +108,9 @@
 //   display: none;
 // }
 
-// .center {
-//   width: 100%;
-//   text-align: center;
+.center {
+  width: 100%;
+  text-align: center;
 
-// }
+}
 </style>

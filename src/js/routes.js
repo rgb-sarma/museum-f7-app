@@ -5,6 +5,7 @@ import Register from '@/pages/register.vue';
 import ProfilePage from '../pages/profile.vue';
 import ExibitionPage from '../pages/exibition.vue';
 import SingleExibit from '@/pages/exibit.vue';
+import Planer from '@/pages/planer.vue';
 
 
 import NotFoundPage from '@/pages/404.vue';
@@ -33,6 +34,10 @@ var routes = [
   {
     path: '/exibit/:id',
     component: SingleExibit,
+  },
+  {
+    path: '/planer/',
+    component: Planer,
   },
 
   {
