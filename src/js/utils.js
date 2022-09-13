@@ -2,7 +2,6 @@ import { f7 } from "framework7-vue";
 
 let util = {
   callApi: async function (apiCall, params, options) {
-    console.log(f7);
     f7.preloader.show('#ef223c');
     let res=null, err=null
     try {

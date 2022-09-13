@@ -16,7 +16,7 @@ let api = {
     return axiosInstance.get('/get_types')
   },
   fetchExhibitions: () => {
-    return axiosInstance.get('/all_exhibitions')
+    return axiosInstance.get('/all_exibitions')
   },
   
   

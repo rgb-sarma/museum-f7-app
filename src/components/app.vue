@@ -19,7 +19,7 @@
   import { getDevice }  from 'framework7/lite-bundle';
   import capacitorApp from '../js/capacitor-app.js';
   import routes from '../js/routes.js';
-  import store from '../js/store';
+  import store from '@/js/store.js';
 
   
   const device = getDevice();
@@ -45,7 +45,7 @@
   };
 
   let init = () => {
-    let data = localStorage.getItem('credentials')
+    let data = localStorage.getItem('credentials') || '{}';
     if (data) {
       let credentials = JSON.parse(data);
       // f7.store.dispatch('login', credentials);

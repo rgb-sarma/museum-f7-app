@@ -15,7 +15,14 @@
         <f7-list-item title="Nothing Found"></f7-list-item>
       </f7-list>
       <f7-list media-list class="search-list searchbar-found">
-        <f7-list-item v-for="n in 5" :title="`Title ${n}`" header="" :subtitle="`Mama Mia its No. ${n}`" after="154$" text="NIGGA" :footer="`${-n}D VR ART`" no-chevron :link="`/exibition/${n}`">
+        <f7-list-item v-for="exibition in displayExibitions" 
+        no-chevron 
+        :title="exibition.exn_name" 
+        :subtitle="exibition.exn_type" 
+        :text="exibition.exn_description" 
+        :after="`${exibition.total_price}$`" 
+        :footer="`Time to complete: ${formatTime(exibition.total_time_to_watch)}`" 
+        :link="`/exibition/${exibition.exn_id}`">
           <!-- <ExibitionCard /> -->
           <!-- <template #media>
             <img src="https://picsum.photos/id/23/60/60" width="60">
@@ -28,60 +35,86 @@
 
 <script setup>
   import navbar from '@/components/navbar.vue';
+import { computed } from '@vue/reactivity';
+import { filter } from 'dom7';
   import { f7, f7ready } from 'framework7-vue';
-  import { onMounted } from 'vue';
+  import { onMounted, reactive } from 'vue';
   // import ExibitionCard from '../components/exibitionCard.vue';
 
   const init = async () => {
+    // fetch all types for exibit and exibition
     let [res, err] = await f7.store.dispatch('fetchTypes')
     if (err) f7.dialog.alert(err)
     await f7.store.dispatch('addTypes', res.data)
+
+    let [res1, err1] = await f7.store.dispatch('fetchExhibitions')
+    await f7.store.dispatch('addExhibitions', res1.data.res)
+    if (err1) f7.dialog.alert(err1)
   }
 
-  const debug = () => {
-    console.log("debug");
-    // f7.dialog.prompt('Enter your name', 'Name', (name) => {
-    //   f7.dialog.alert(`Hello ${name}!`);
-    // });
-    let crnci = "Halo Leskovac"
-    let nigga = f7.dialog.create({
-      title: 'Enter your name',
-      // text: 'Your name:',
-      // content: '<input type="text" name="name" placeholder="Your name">',
-      verticalButtons: true,
-      closeByBackdropClick: true,
-      buttons: [
-        {
-          text: 'Cancel',
-          cssClass: 'center'
-        },
-        {
-          text: 'Ok',
-          bold: true,
-          cssClass: 'center',
-          onClick: (dialog) => {
-            const name = dialog.$el.find('input[name="name"]').val();
-            f7.dialog.alert(`Hello ${name}!`);
-          },
-        },
-        {
-          text: crnci,
-          cssClass: 'center',
-          onClick: () => {
-            f7.dialog.prompt('Enter tour name', 'Create New Tour', (name) => {
-              f7.dialog.alert(`Added to new tour: ${name}`);
-            });
-          }
-        },
-      ],
-    });
+  let allExibitions = reactive(f7.store.state.allExibitions);
+  let filters = f7.store.getters.filters;
 
-    nigga.open();
-  } 
-
-  const xd = () => {
-    console.log('chje');
+  // compress minutes into anything bigger than 1 hour
+  const formatTime = (time) => {
+    let hours = Math.floor(time / 60);
+    let minutes = time % 60;  
+    return `${hours ? hours + 'h' : ''} ${minutes}m`
   }
+
+  let displayExibitions = computed(()=> {
+    console.log(filters);
+    console.log('recalculate');
+    return allExibitions.value.filter(exibition => {
+      if (exibition.total_price >= filters.priceMin && exibition.total_price <= filters.priceMax) return true
+      return true
+    })
+  })
+
+  // const debug = () => {
+  //   console.log("debug");
+  //   // f7.dialog.prompt('Enter your name', 'Name', (name) => {
+  //   //   f7.dialog.alert(`Hello ${name}!`);
+  //   // });
+  //   let crnci = "Halo Leskovac"
+  //   let nigga = f7.dialog.create({
+  //     title: 'Enter your name',
+  //     // text: 'Your name:',
+  //     // content: '<input type="text" name="name" placeholder="Your name">',
+  //     verticalButtons: true,
+  //     closeByBackdropClick: true,
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         cssClass: 'center'
+  //       },
+  //       {
+  //         text: 'Ok',
+  //         bold: true,
+  //         cssClass: 'center',
+  //         onClick: (dialog) => {
+  //           const name = dialog.$el.find('input[name="name"]').val();
+  //           f7.dialog.alert(`Hello ${name}!`);
+  //         },
+  //       },
+  //       {
+  //         text: crnci,
+  //         cssClass: 'center',
+  //         onClick: () => {
+  //           f7.dialog.prompt('Enter tour name', 'Create New Tour', (name) => {
+  //             f7.dialog.alert(`Added to new tour: ${name}`);
+  //           });
+  //         }
+  //       },
+  //     ],
+  //   });
+
+  //   nigga.open();
+  // } 
+
+  // const xd = () => {
+  //   console.log('chje');
+  // }
 
       
 </script>

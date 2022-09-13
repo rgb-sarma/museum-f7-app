@@ -1,27 +1,20 @@
 import { createStore } from 'framework7/lite';
 import api from '@/api'
 import _ from '@/js/utils.js'
-import {ref} from 'vue'
+import {reactive, ref} from 'vue'
+
 const store = createStore({
   state: {
     loggedIn: ref(null),
     user: ref(null),
-    allExibitions: ref(null),
-    exibitTypes: ref([]),
-    exibitionTypes: ref([]),
+    allExibitions: ref([]),
+    exibitTypes: reactive([]),
+    exibitionTypes: reactive([]),
+    filters: reactive({}),
   },
   getters: {
-    loggedIn(state) {
-      return state.loggedIn;
-    },
-    user(state) {
-      return state.user;
-    },
-    getExibitTypes(state) {
-      return state.exibitTypes;
-    },
-    getExibitionTypes(state) {
-      return state.exibitionTypes;
+    filters(state) {
+      return state.filters
     }
   },
   actions: {
@@ -33,6 +26,9 @@ const store = createStore({
     },
     async fetchTypes (store) {
       return await _.callApi(api.fetchTypes);
+    },
+    async fetchExhibitions (store) {
+      return await _.callApi(api.fetchExhibitions);
     },
     addUser({ state }, data) {
       state.user.value = data.user;
@@ -46,6 +42,16 @@ const store = createStore({
       state.exibitTypes.value = data.exibit_types;
       state.exibitionTypes.value = data.exibition_types;
     },
+    addTypes({ state }, data) {
+      state.exibitTypes.value = data.exibit_types;
+      state.exibitionTypes.value = data.exibition_types;
+    },
+    addExhibitions({ state }, data) {
+      state.allExibitions.value = data;
+    },
+    changeFilters({ state }, data) {
+      state.filters.value = data;
+    }
   },
 })
 export default store;
