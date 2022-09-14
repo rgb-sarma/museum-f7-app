@@ -60,7 +60,8 @@
       if (
         (exibition.total_price >= filters.value.priceMin && exibition.total_price <= filters.value.priceMax) &&
         (exibition.total_time_to_watch >= filters.value.timeMin && exibition.total_time_to_watch <= filters.value.timeMax) &&
-        (exibition.review >= filters.value.reviewMin && exibition.review <= filters.value.reviewMax)
+        (exibition.review >= filters.value.reviewMin && exibition.review <= filters.value.reviewMax) && 
+        (exibition.exibits.length >= filters.value.numMin && exibition.exibits.length <= filters.value.numMax)
         // (filters.value.types.includes(exibition.exn_type)) &&
       ) return true
     })

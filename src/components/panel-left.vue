@@ -85,22 +85,6 @@ let exibitionTypes = reactive(store.state.exibitionTypes);
 let isTour = ref(false);
 let isExibition = ref(true);
 
-// NEUSPELI POKUSAJ I GIVE UP
-
-// let exibitTypesFilter = reactive(['test']);
-// let addExibitType = (type) => {
-//   for (const extType of exibitTypesFilter) {
-//     console.log(extType);
-//   }
-//   console.log(exibitTypesFilter[0]);
-//   if (exibitTypesFilter.includes(type)) {
-//     exibitTypesFilter.value = exibitTypesFilter.filter((item) => item !== type);
-//   } else {
-//     exibitTypesFilter.value = [...exibitTypesFilter, type];
-//   }
-// }
-
-// let exibitionTypesFilter = reactive([]);
 
 let numMin = ref(0);
 let numMax = ref(100);
