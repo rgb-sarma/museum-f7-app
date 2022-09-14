@@ -18,6 +18,14 @@ let api = {
   fetchExhibitions: () => {
     return axiosInstance.get('/all_exibitions')
   },
+  test: () => {
+    return axiosInstance.post('/review', {
+      rev_value: 3,
+      // ext_id: 1,
+      exn_id: 3,
+      // rev_description: 'xd'
+    })
+  },
   
   
 }

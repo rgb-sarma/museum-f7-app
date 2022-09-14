@@ -35,11 +35,11 @@
 
 <script setup>
   import navbar from '@/components/navbar.vue';
-import { computed } from '@vue/reactivity';
-import { filter } from 'dom7';
-  import { f7, f7ready } from 'framework7-vue';
-  import { onMounted, reactive } from 'vue';
-  // import ExibitionCard from '../components/exibitionCard.vue';
+  import { computed } from '@vue/reactivity';
+  import { f7 } from 'framework7-vue';
+  import { reactive } from 'vue';
+  import emitter from '@/js/emmiter.js'
+  let useEmitter = emitter()
 
   const init = async () => {
     // fetch all types for exibit and exibition
@@ -53,7 +53,22 @@ import { filter } from 'dom7';
   }
 
   let allExibitions = reactive(f7.store.state.allExibitions);
-  let filters = f7.store.getters.filters;
+  let filters = reactive({})
+
+  let displayExibitions = computed(() => {
+    return allExibitions.value.filter(exibition => {
+      if (
+        (exibition.total_price >= filters.value.priceMin && exibition.total_price <= filters.value.priceMax) &&
+        (exibition.total_time_to_watch >= filters.value.timeMin && exibition.total_time_to_watch <= filters.value.timeMax) &&
+        (exibition.review >= filters.value.reviewMin && exibition.review <= filters.value.reviewMax)
+        // (filters.value.types.includes(exibition.exn_type)) &&
+      ) return true
+    })
+  })
+  
+  useEmitter.emitter.on('changedFilters', () => {
+    filters.value = f7.store.state.filters.value;
+  })
 
   // compress minutes into anything bigger than 1 hour
   const formatTime = (time) => {
@@ -61,16 +76,6 @@ import { filter } from 'dom7';
     let minutes = time % 60;  
     return `${hours ? hours + 'h' : ''} ${minutes}m`
   }
-
-  let displayExibitions = computed(()=> {
-    console.log(filters);
-    console.log('recalculate');
-    return allExibitions.value.filter(exibition => {
-      if (exibition.total_price >= filters.priceMin && exibition.total_price <= filters.priceMax) return true
-      return true
-    })
-  })
-
   // const debug = () => {
   //   console.log("debug");
   //   // f7.dialog.prompt('Enter your name', 'Name', (name) => {

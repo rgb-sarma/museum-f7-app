@@ -17,7 +17,7 @@
       <f7-block v-show="!isTour">
         <f7-block-title>Type of exibits</f7-block-title>
         <f7-list>
-          <f7-list-item v-for="exibit in exibitTypes.value" checkbox no-chevron :title="exibit"></f7-list-item>
+          <f7-list-item v-for="exibit in exibitTypes.value" checkbox no-chevron :title="exibit" ></f7-list-item>
         </f7-list>
       </f7-block>
       <f7-block>
@@ -25,7 +25,7 @@
         <f7-list simple-list>
           <f7-list-item>
             <f7-list-item-cell class="flex-shrink-3">
-              <f7-range :min="0" :max="500" :step="1" :value="[numMin, numMax]" :dual="true" :label="true" color="#ef223c" @range:change="onNumChange" />
+              <f7-range :min="0" :max="100" :step="1" :value="[numMin, numMax]" :dual="true" :label="true" color="#ef223c" @range:change="onNumChange" />
             </f7-list-item-cell>
           </f7-list-item>
         </f7-list>
@@ -35,7 +35,7 @@
         <f7-list simple-list>
           <f7-list-item>
             <f7-list-item-cell class="flex-shrink-3">
-              <f7-range :min="0" :max="500" :step="1" :value="[priceMin, priceMax]" :dual="true" :label="true" color="#ef223c" @range:change="onPriceChange" />
+              <f7-range :min="0" :max="1500" :step="1" :value="[priceMin, priceMax]" :dual="true" :label="true" color="#ef223c" @range:change="onPriceChange" />
             </f7-list-item-cell>
           </f7-list-item>
         </f7-list>
@@ -45,7 +45,7 @@
         <f7-list simple-list>
           <f7-list-item>
             <f7-list-item-cell class="flex-shrink-3">
-              <f7-range :min="10" :max="500" :step="1" :value="[timeMin, timeMax]" :dual="true" :label="true" color="#ef223c" @range:change="onTimeChange" />
+              <f7-range :min="0" :max="500" :step="1" :value="[timeMin, timeMax]" :dual="true" :label="true" color="#ef223c" @range:change="onTimeChange" />
             </f7-list-item-cell>
           </f7-list-item>
         </f7-list>
@@ -55,7 +55,7 @@
         <f7-list simple-list>
           <f7-list-item>
             <f7-list-item-cell class="flex-shrink-3">
-              <f7-range :min="0" :max="5" :step="1" :value="[reviewMin, reviewMax]" :dual="true" :label="true" color="#ef223c" @range:change="onReviewChange" />
+              <f7-range :min="1" :max="5" :step="1" :value="[reviewMin, reviewMax]" :dual="true" :label="true" color="#ef223c" @range:change="onReviewChange" />
             </f7-list-item-cell>
           </f7-list-item>
         </f7-list>
@@ -75,11 +75,9 @@
 </template>
 
 <script setup>
-import { f7 } from "framework7-vue";
-// import utils
 import _ from "@/js/utils";
 import store from '@/js/store.js'
-import { reactive, ref, watchEffect } from "vue";
+import { reactive, ref } from "vue";
 
 let exibitTypes = reactive(store.state.exibitTypes);
 let exibitionTypes = reactive(store.state.exibitionTypes);
@@ -87,31 +85,48 @@ let exibitionTypes = reactive(store.state.exibitionTypes);
 let isTour = ref(false);
 let isExibition = ref(true);
 
-let priceMin = ref(0);
-let priceMax = ref(500);
+// NEUSPELI POKUSAJ I GIVE UP
+
+// let exibitTypesFilter = reactive(['test']);
+// let addExibitType = (type) => {
+//   for (const extType of exibitTypesFilter) {
+//     console.log(extType);
+//   }
+//   console.log(exibitTypesFilter[0]);
+//   if (exibitTypesFilter.includes(type)) {
+//     exibitTypesFilter.value = exibitTypesFilter.filter((item) => item !== type);
+//   } else {
+//     exibitTypesFilter.value = [...exibitTypesFilter, type];
+//   }
+// }
+
+// let exibitionTypesFilter = reactive([]);
+
 let numMin = ref(0);
-let numMax = ref(500);
-let timeMin = ref(10);
+let numMax = ref(100);
+let priceMin = ref(0);
+let priceMax = ref(1500);
+let timeMin = ref(0);
 let timeMax = ref(500);
-let reviewMin = ref(0);
+let reviewMin = ref(1);
 let reviewMax = ref(5);
 
 const resetValues = () => {
   priceMin.value = 0;
-  priceMax.value = 500;
+  priceMax.value = 1500;
   numMin.value = 0;
-  numMax.value = 500;
-  timeMin.value = 10;
+  numMax.value = 100;
+  timeMin.value = 0;
   timeMax.value = 500;
-  reviewMin.value = 0;
+  reviewMin.value = 1;
   reviewMax.value = 5;
   isTour.value = false;
   isExibition.value = true;
 }
 
-let reset = () => {
+let reset = async () => {
   resetValues()
-  store.dispatch('changeFilters', {
+  await store.dispatch('changeFilters', {
     isTour: isTour.value,
     isExibition: isExibition.value,
     priceMin: priceMin.value,
@@ -125,8 +140,10 @@ let reset = () => {
   })
 }
 reset()
-let applyFilters = () => {
-  store.dispatch('changeFilters', {
+
+
+let applyFilters = async () => {
+  await store.dispatch('changeFilters', {
     isTour: isTour.value,
     isExibition: isExibition.value,
     priceMin: priceMin.value,

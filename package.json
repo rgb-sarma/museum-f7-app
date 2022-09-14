@@ -34,6 +34,7 @@
     "framework7-vue": "^7.0.7",
     "fs": "0.0.1-security",
     "material-icons": "^1.11.11",
+    "mitt": "^3.0.0",
     "npm": "^7.24.2",
     "skeleton-elements": "^4.0.0",
     "swiper": "^8.3.2",

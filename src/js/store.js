@@ -2,6 +2,9 @@ import { createStore } from 'framework7/lite';
 import api from '@/api'
 import _ from '@/js/utils.js'
 import {reactive, ref} from 'vue'
+import emitter from '@/js/emmiter.js'
+
+let useEmitter = emitter()
 
 const store = createStore({
   state: {
@@ -30,6 +33,9 @@ const store = createStore({
     async fetchExhibitions (store) {
       return await _.callApi(api.fetchExhibitions);
     },
+    async test (store) {
+      return await _.callApi(api.test);
+    },
     addUser({ state }, data) {
       state.user.value = data.user;
       state.loggedIn.value = data.sid;
@@ -51,6 +57,7 @@ const store = createStore({
     },
     changeFilters({ state }, data) {
       state.filters.value = data;
+      useEmitter.emitter.emit('changedFilters')
     }
   },
 })

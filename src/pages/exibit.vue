@@ -2,7 +2,7 @@
     <f7-page>
       <navbar />
 
-      <f7-block>
+      <f7-block @click="test">
         test xd
       </f7-block>
     </f7-page>
@@ -17,6 +17,9 @@
   });
   let ext_id = props.f7route.params.id
 
+  let test = () => {
+    f7.store.dispatch('test')
+  }
 
 
 </script>
