@@ -38,32 +38,9 @@ let isCreating = ref(false);
 let tourName = ref('');
 let tourDesc = ref('');
 
-const init = async () => {
-  let [res, err] = await f7.store.dispatch('getAllTours');
-  if (err) f7.dialog.alert(err);
-  await f7.store.dispatch('addTours', res.data.tours)
 
-  console.log(res.data.tours);
-}
-
-let allTours = reactive(f7.store.state.allTours);
-
-
-const createTour = async () => {
-  console.log(tourName.value);
-  console.log(tourDesc.value);
-
-  let data = {
-    tou_name: tourName.value,
-    tou_description: tourDesc.value
-  }
-
-  let [res, err] = await f7.store.dispatch('createTour', data)
-
-  if (err) {f7.dialog.alert(err)} else {
-    f7.dialog.alert('Tour created successfully')
-  }
-  console.log(res);
+const createTour = () => {
+  console.log(tourName.value, tourDesc.value);
   tourName.value = '';
   tourDesc.value = '';
   isCreating.value = false;

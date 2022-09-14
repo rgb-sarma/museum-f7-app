@@ -24,7 +24,7 @@
         Don't have an account? <a href="/register">Register</a>
       </f7-block-footer>
       <f7-block style="width: 100%;">
-        <f7-button @click="submit" raised round fill>Log In</f7-button>
+        <f7-button @click="login" raised round fill>Log In</f7-button>
       </f7-block>
     </f7-block>
 
@@ -40,24 +40,8 @@
   let email = ref('v@v.v')
   let password = ref('123')
 
-  let submit = async () => {
-    let data = {
-      email: email.value,
-      password: password.value
-    }
-
-    let [res, err] = await f7.store.dispatch('login', data)
-    
-    if (err) f7.dialog.alert(err)
-    console.log(res);
-    if (res) {
-      let user = res.data.user
-      let sid = res.data.sid
-      await f7.store.dispatch('addUser', {user: user, sid: sid})
-      console.log(f7.store.state);
-      f7.dialog.alert('You have successfully :) !')
-      f7.views.main.router.navigate('/')
-    }
+  let login = () => {
+    console.log(email.value, password.value);
   }
 </script>
 

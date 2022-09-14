@@ -36,7 +36,7 @@
               </f7-block>
               <f7-list-item v-for="n in 5" >
                 <f7-block strong style="background-color: #f6f6f6;">
-                  <f7-block-title>ime i prezime crnca {{ n }}</f7-block-title>
+                  <f7-block-title>ime i prezime korisnika {{ n }}</f7-block-title>
                   <p>Review Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit saepe vel sunt deserunt doloribus temporibus officiis maiores ipsam porro quos.</p>
                   <f7-block-footer>Ocjena: 5/5</f7-block-footer>
                 </f7-block>

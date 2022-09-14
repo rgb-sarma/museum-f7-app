@@ -15,18 +15,7 @@
         <f7-list-item title="Nothing Found"></f7-list-item>
       </f7-list>
       <f7-list media-list class="search-list searchbar-found">
-        <f7-list-item v-for="exibition in displayExibitions" 
-        no-chevron 
-        :title="exibition.exn_name" 
-        :subtitle="exibition.exn_type" 
-        :text="exibition.exn_description" 
-        :after="`${exibition.total_price}$`" 
-        :footer="`Time to complete: ${formatTime(exibition.total_time_to_watch)}`" 
-        :link="`/exibition/${exibition.exn_id}`">
-          <!-- <ExibitionCard /> -->
-          <!-- <template #media>
-            <img src="https://picsum.photos/id/23/60/60" width="60">
-          </template> -->
+        <f7-list-item v-for="n in 4" title="Hello">
         </f7-list-item>
       </f7-list>
     </f7-block>
@@ -38,40 +27,8 @@
   import { computed } from '@vue/reactivity';
   import { f7 } from 'framework7-vue';
   import { reactive } from 'vue';
-  import emitter from '@/js/emmiter.js'
-  let useEmitter = emitter()
 
-  const init = async () => {
-    // fetch all types for exibit and exibition
-    let [res, err] = await f7.store.dispatch('fetchTypes')
-    if (err) f7.dialog.alert(err)
-    await f7.store.dispatch('addTypes', res.data)
-
-    let [res1, err1] = await f7.store.dispatch('fetchExhibitions')
-    await f7.store.dispatch('addExhibitions', res1.data.res)
-    if (err1) f7.dialog.alert(err1)
-  }
-
-  let allExibitions = reactive(f7.store.state.allExibitions);
-  let filters = reactive({})
-
-  let displayExibitions = computed(() => {
-    if (filters.value)
-      return allExibitions.value.filter(exibition => {
-        if (
-          (exibition.total_price >= filters.value.priceMin && exibition.total_price <= filters.value.priceMax) &&
-          (exibition.total_time_to_watch >= filters.value.timeMin && exibition.total_time_to_watch <= filters.value.timeMax) &&
-          (exibition.review >= filters.value.reviewMin && exibition.review <= filters.value.reviewMax) && 
-          (exibition.exibits.length >= filters.value.numMin && exibition.exibits.length <= filters.value.numMax)
-          // (filters.value.types.includes(exibition.exn_type)) &&
-        ) return true
-      })
-    else return allExibitions.value
-  })
   
-  useEmitter.emitter.on('changedFilters', () => {
-    filters.value = f7.store.state.filters.value;
-  })
 
   // compress minutes into anything bigger than 1 hour
   const formatTime = (time) => {

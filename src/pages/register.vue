@@ -74,7 +74,7 @@
   import { ref } from 'vue';
   // import f7 
   import { f7 } from 'framework7-vue';
-  let name = ref('vidak')
+  let name = ref('test')
   let lastname = ref('test')
   let email = ref('v@v.v')
   let password = ref('123')
@@ -83,27 +83,7 @@
   let address = ref('asd 123')
 
   let submit = async () => {
-    if (password.value != c_password.value) {
-      f7.dialog.alert('Password do not match!')
-      return
-    } 
-
-    let user = {
-      name: name.value,
-      lastname: lastname.value,
-      email: email.value,
-      password: password.value,
-      phone: phone.value,
-      address: address.value
-    }
-    console.log(user);
-    console.log(f7);
-    let [res,err] = await f7.store.dispatch('register', user)
-    if (err) f7.dialog.alert(err)
-    if (res) {
-      f7.dialog.alert('You have successfully registered!')
-      f7.views.main.router.navigate('/')
-    }
+    console.log(name.value, lastname.value, email.value, password.value, c_password.value, phone.value, address.value);
   }
 </script>
 
