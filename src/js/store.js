@@ -11,6 +11,7 @@ const store = createStore({
     loggedIn: ref(null),
     user: ref(null),
     allExibitions: ref([]),
+    allTours: ref([]),
     exibitTypes: reactive([]),
     exibitionTypes: reactive([]),
     filters: reactive({}),
@@ -33,6 +34,12 @@ const store = createStore({
     async fetchExhibitions (store) {
       return await _.callApi(api.fetchExhibitions);
     },
+    async createTour (store, payload) {
+      return await _.callApi(api.createTour, payload);
+    },
+    async getAllTours (store) {
+      return await _.callApi(api.getAllTours);
+    },
     async test (store) {
       return await _.callApi(api.test);
     },
@@ -54,6 +61,9 @@ const store = createStore({
     },
     addExhibitions({ state }, data) {
       state.allExibitions.value = data;
+    },
+    addTours({ state }, data) {
+      state.allTours.value = data;
     },
     changeFilters({ state }, data) {
       state.filters.value = data;

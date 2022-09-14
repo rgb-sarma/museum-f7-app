@@ -1,5 +1,5 @@
 <template>
-  <f7-page name="exibition">
+  <f7-page name="tour">
     <Navbar />
     <div class="title-wrap">
       <f7-block>
@@ -63,10 +63,18 @@
 <script setup>
 import Navbar from '../components/navbar.vue';
 import { f7 } from 'framework7-vue';
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 
-
+const props = defineProps({
+    f7route: {
+      type: Object
+    }
+  });
 // let varijabla = ref(false)
+let tour = ref({})
+
+
+init()
 
 const kancer = () => {  
   let createComment = f7.dialog.create({

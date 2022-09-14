@@ -18,6 +18,12 @@ let api = {
   fetchExhibitions: () => {
     return axiosInstance.get('/all_exibitions')
   },
+  createTour: (tour) => {
+    return axiosInstance.post('/tour', tour)
+  },
+  getAllTours: () => {
+    return axiosInstance.get('/tour')
+  },
   test: () => {
     return axiosInstance.post('/review', {
       rev_value: 3,
