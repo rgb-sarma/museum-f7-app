@@ -1,5 +1,5 @@
 <template>
-  <f7-page @page:afterin="init">
+  <f7-page>
     <Navbar />
     <f7-block>
       <f7-button @click="openCreate" raised outline round>+ Create new tour</f7-button>
@@ -18,14 +18,62 @@
         </f7-block>
       </f7-list>
     </f7-block>
-    <f7-block>
-      <f7-list>
-        <f7-list-item v-for="(tour) in allTours" :key="tour.tou_id" :title="tour.tou_name" :text="tour.tou_description" :link="`/tour/${tour.tou_id}`"></f7-list-item>
-      </f7-list>
-    </f7-block>
-    <f7-block>
-      
-    </f7-block>
+    <f7-toolbar tabbar bottom>
+      <f7-link tab-link="#ongoing" tab-link-active>Ongoing</f7-link>
+      <f7-link tab-link="#finished">Finished</f7-link>
+      <f7-link tab-link="#canceled">Canceled</f7-link>
+    </f7-toolbar>
+    <f7-tabs swipeable>
+      <f7-tab id="ongoing" tab-active>
+        <f7-block>
+          <f7-list media-list>
+            <f7-list-item 
+              header="01.02.2022"
+              title="Title" 
+              subtitle=""
+              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lorem quis est imperdiet tincidunt. Sed et lorem quis est imperdiet tincidunt."          
+              footer="30 min, $1200" 
+              badge="owner"
+              badge-color="#ef223c"
+              link="/tour/1" 
+              no-chevron>
+            </f7-list-item>
+          </f7-list>
+        </f7-block>
+      </f7-tab>
+      <f7-tab id="finished">
+        <f7-block>
+          <f7-list media-list>
+            <f7-list-item 
+              header="01.01.2022"
+              title="Title" 
+              subtitle=""
+              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lorem quis est imperdiet tincidunt. Sed et lorem quis est imperdiet tincidunt."          
+              badge="owner"
+              badge-color="#ef223c"
+              link="/tour/1" 
+              no-chevron>
+            </f7-list-item>
+          </f7-list>
+        </f7-block>
+      </f7-tab>
+      <f7-tab id="canceled">
+        <f7-block>
+          <f7-list media-list>
+            <f7-list-item 
+              header="01.01.2022"
+              title="Title 2" 
+              subtitle=""
+              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lorem quis est imperdiet tincidunt. Sed et lorem quis est imperdiet tincidunt."          
+              badge=""
+              badge-color="#ef223c"
+              link="/tour/1" 
+              no-chevron>
+            </f7-list-item>
+          </f7-list>
+        </f7-block>
+      </f7-tab>
+    </f7-tabs>
   </f7-page>
 </template>
 <script setup>

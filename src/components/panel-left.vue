@@ -11,13 +11,13 @@
       <f7-block v-show="!isTour">
         <f7-block-title>Type of exibition</f7-block-title>
         <f7-list>
-          <f7-list-item v-for="exibition in exibitionTypes.value" checkbox no-chevron :title="exibition"></f7-list-item>
+          <f7-list-item v-for="exibition in exibitionTypes" checkbox no-chevron :title="exibition"></f7-list-item>
         </f7-list>
       </f7-block>
       <f7-block v-show="!isTour">
         <f7-block-title>Type of exibits</f7-block-title>
         <f7-list>
-          <f7-list-item v-for="exibit in exibitTypes.value" checkbox no-chevron :title="exibit" ></f7-list-item>
+          <f7-list-item v-for="exibit in exibitTypes" checkbox no-chevron :title="exibit" ></f7-list-item>
         </f7-list>
       </f7-block>
       <f7-block>
@@ -25,7 +25,7 @@
         <f7-list simple-list>
           <f7-list-item>
             <f7-list-item-cell class="flex-shrink-3">
-              <f7-range :min="0" :max="100" :step="1" :value="[numMin, numMax]" :dual="true" :label="true" color="#ef223c" @range:change="onNumChange" />
+              <f7-range :min="0" :max="15" :step="1" :value="[numMin, numMax]" :dual="true" :label="true" color="#ef223c" @range:change="onNumChange" />
             </f7-list-item-cell>
           </f7-list-item>
         </f7-list>
@@ -35,7 +35,7 @@
         <f7-list simple-list>
           <f7-list-item>
             <f7-list-item-cell class="flex-shrink-3">
-              <f7-range :min="0" :max="1500" :step="1" :value="[priceMin, priceMax]" :dual="true" :label="true" color="#ef223c" @range:change="onPriceChange" />
+              <f7-range :min="0" :max="2000" :step="1" :value="[priceMin, priceMax]" :dual="true" :label="true" color="#ef223c" @range:change="onPriceChange" />
             </f7-list-item-cell>
           </f7-list-item>
         </f7-list>
@@ -76,20 +76,26 @@
 
 <script setup>
 import _ from "@/js/utils";
-import store from '@/js/store.js'
+import { f7 } from "framework7-vue";
+// import store from '@/js/store.js'
+
 import { reactive, ref } from "vue";
 
-let exibitTypes = reactive(store.state.exibitTypes);
-let exibitionTypes = reactive(store.state.exibitionTypes);
+
+let exibitTypes = ref(f7.store.state.exibitTypes);
+let exibitionTypes = ref(f7.store.state.exibitionTypes);
+
+// console.log(f7.store.state.exibitTypes);
+// console.log(exibitTypes, exibitionTypes);
 
 let isTour = ref(false);
 let isExibition = ref(true);
 
 
 let numMin = ref(0);
-let numMax = ref(100);
+let numMax = ref(15);
 let priceMin = ref(0);
-let priceMax = ref(1500);
+let priceMax = ref(2000);
 let timeMin = ref(0);
 let timeMax = ref(500);
 let reviewMin = ref(1);
@@ -97,9 +103,9 @@ let reviewMax = ref(5);
 
 const resetValues = () => {
   priceMin.value = 0;
-  priceMax.value = 1500;
+  priceMax.value = 2000;
   numMin.value = 0;
-  numMax.value = 100;
+  numMax.value = 15;
   timeMin.value = 0;
   timeMax.value = 500;
   reviewMin.value = 1;
@@ -108,37 +114,38 @@ const resetValues = () => {
   isExibition.value = true;
 }
 
-let reset = async () => {
+let reset = () => {
   resetValues()
-  await store.dispatch('changeFilters', {
-    isTour: isTour.value,
-    isExibition: isExibition.value,
-    priceMin: priceMin.value,
-    priceMax: priceMax.value,
-    numMin: numMin.value,
-    numMax: numMax.value,
-    timeMin: timeMin.value,
-    timeMax: timeMax.value,
-    reviewMin: reviewMin.value,
-    reviewMax: reviewMax.value
-  })
+  // await store.dispatch('changeFilters', {
+  //   isTour: isTour.value,
+  //   isExibition: isExibition.value,
+  //   priceMin: priceMin.value,
+  //   priceMax: priceMax.value,
+  //   numMin: numMin.value,
+  //   numMax: numMax.value,
+  //   timeMin: timeMin.value,
+  //   timeMax: timeMax.value,
+  //   reviewMin: reviewMin.value,
+  //   reviewMax: reviewMax.value
+  // })
 }
 reset()
 
 
 let applyFilters = async () => {
-  await store.dispatch('changeFilters', {
-    isTour: isTour.value,
-    isExibition: isExibition.value,
-    priceMin: priceMin.value,
-    priceMax: priceMax.value,
-    numMin: numMin.value,
-    numMax: numMax.value,
-    timeMin: timeMin.value,
-    timeMax: timeMax.value,
-    reviewMin: reviewMin.value,
-    reviewMax: reviewMax.value
-  })
+  console.log('apply');
+  // await f7.store.dispatch('changeFilters', {
+  //   isTour: isTour.value,
+  //   isExibition: isExibition.value,
+  //   priceMin: priceMin.value,
+  //   priceMax: priceMax.value,
+  //   numMin: numMin.value,
+  //   numMax: numMax.value,
+  //   timeMin: timeMin.value,
+  //   timeMax: timeMax.value,
+  //   reviewMin: reviewMin.value,
+  //   reviewMax: reviewMax.value
+  // })
 }
 
 // no clue all this below
