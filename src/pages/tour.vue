@@ -40,11 +40,11 @@
                   </f7-col>
                 </f7-row>
               </f7-block>
-              <f7-list-item v-for="n in 5">
+              <f7-list-item v-for="comment in allComments" :key="comment.id" >
                 <f7-block strong style="background-color: #f6f6f6;">
-                  <f7-block-title>User name and Lastname {{ n }}</f7-block-title>
-                  <p>Review Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit saepe vel sunt deserunt doloribus temporibus officiis maiores ipsam porro quos.</p>
-                  <f7-block-footer>Score: 5/5</f7-block-footer>
+                  <f7-block-title>{{ comment.user }}</f7-block-title>
+                  <p>{{ comment.text }}</p>
+                  <f7-block-footer>Score: {{ comment.score }}/5</f7-block-footer>
                 </f7-block>
               </f7-list-item>
             </f7-list>
@@ -53,7 +53,7 @@
       </f7-list>
     </f7-block>
 
-    <Popup :isActive="isActive" @close="closePopup" />
+    <Popup :isActive="isActive" @close="closePopup"/>
     
   </f7-page>
 </template>
@@ -68,6 +68,7 @@ import Popup from '../components/popup.vue';
 
 // console.log("before",f7.store.state.allExibitions.value);
 let exibition = ref(f7.store.state.allExibitions.value.filter((e) => e.id == f7.views.main.router.currentRoute.params.id || 1))
+let allComments = ref(f7.store.state.comments.value)
 let isActive = ref(false)
 // console.log("filtered val", exibition.value);
 

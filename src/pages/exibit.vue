@@ -47,6 +47,9 @@
           </f7-list-item>
         </f7-list>
       </f7-block>
+      <f7-fab position="right-bottom" :href="`/editTour/${exibit.id}`">
+        <f7-icon md="material:add"></f7-icon>
+      </f7-fab>
 
       <Popup :isActive="isActive" @close="closePopup"/>
     </f7-page>

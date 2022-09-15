@@ -7,6 +7,7 @@ import ExibitionPage from '../pages/exibition.vue';
 import SingleExibit from '@/pages/exibit.vue';
 import Planer from '@/pages/planer.vue';
 import TourPage from '@/pages/tour.vue';
+import EditTourPage from '@/pages/editTour.vue';
 
 
 import NotFoundPage from '@/pages/404.vue';
@@ -43,6 +44,10 @@ var routes = [
   {
     path: '/planer/',
     component: Planer,
+  },
+  {
+    path: '/editTour/:id',
+    component: EditTourPage,
   },
 
   {
