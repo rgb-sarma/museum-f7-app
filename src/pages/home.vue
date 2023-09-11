@@ -1,6 +1,17 @@
 <template>
   <f7-page name="home">
     <navbar disableBack/>
+    <!-- 
+      TODO:
+      - make filters work
+      - handle logging in and out in the sidebar
+      - handle creating tours
+      - change categories to smt that makes sense like historical, modern, etc.
+      - handle leaving reviews
+      - fix routing when adding to a tour -> editTour.vue -> cancel method (maybe save method too idk)
+      - adjust the score agregation
+      - fix profile favourite exibit types
+     -->
 
     <!-- <f7-button fill @click="debug">Hello </f7-button> -->
 

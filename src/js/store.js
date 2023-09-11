@@ -56,7 +56,7 @@ const store = createStore({
       },
       {
         id: 2,
-        title: 'Exibition 1',
+        title: 'Exibition 2',
         date: '15.09.2022',
         exibits: [
           {
